@@ -31,10 +31,10 @@ public class  Main {
             Signer secondSigner = new Signer();
             PublicKey pubKey2 = secondSigner.getPubkey();
             byte[] sign2 = signMesssage(message3.getBytes(), secondSigner.getPrivateKey());
-            System.out.println("Example with an invalid signature using signature that does not match the current message : " + message3 + sign2.toString().hashCode());
+            System.out.println("Example with an invalid signature using signature that does not match the current message : " + message3 + sign2.hashCode());
             validateMessageSignature(pubKey, message.getBytes(), sign2);
 
-            System.out.println("Example with an invalid signature using public key from another user : " + message3 + sign.toString().hashCode());
+            System.out.println("Example with an invalid signature using public key from another user : " + message3 + sign.hashCode());
             validateMessageSignature(pubKey2, message.getBytes(), sign);
 
         } catch (Exception e) {
@@ -53,13 +53,7 @@ public class  Main {
                 return publicKey;
             }
 
-            @Override
-            public String toString() {
-                return "Signer{" +
-                        "privateKey=" + privateKey +
-                        ", publicKey=" + publicKey +
-                        '}';
-            }
+            
 
             public Signer() throws NoSuchAlgorithmException {
                     KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("DSA");
@@ -68,7 +62,7 @@ public class  Main {
                     KeyPair keyP = keyPairGen.generateKeyPair();
                     this.publicKey = keyP.getPublic();
                     this.privateKey = keyP.getPrivate();
-                    System.out.println("Keys generated : " + keyP.toString().hashCode());
+                    System.out.println("Keys generated : " + keyP.hashCode());
                 }
 
 
@@ -93,10 +87,7 @@ public class  Main {
         }
 
 
-    @Override
-    public String toString() {
-        return "Main{}";
-    }
+    
 
     //Class for generation and validation of digital signatures.
         public static void validateMessageSignature(PublicKey publicKey, byte[] message, byte[] signature) throws
@@ -105,7 +96,7 @@ public class  Main {
             userSig.initVerify(publicKey);
             userSig.update(message);
             if (userSig.verify(signature)) {
-                System.out.println("The message is properly signed.= " + signature.toString().hashCode());
+                System.out.println("The message is properly signed.= " + signature.hashCode());
             }
             else {
                 System.err.println("It is not possible to validate the signature. Check signature!");
