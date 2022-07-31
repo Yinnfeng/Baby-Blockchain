@@ -10,3 +10,9 @@ Reference:
 https://github.com/WesternPine/KeyGenerator/blob/master/src/main/java/proj/key/gen/KeyGenerator.java
 https://github.com/rafaelqg/code/blob/main/DSA.java
 https://www.tutorialspoint.com/java_cryptography/java_cryptography_creating_signature.htm
+
+
+Dependencies::
+
+Gson
+Bouncycastle as security providers
